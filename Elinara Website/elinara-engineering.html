@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elinara Engineering Ltd – Engineering Solutions. Powered by Purpose.</title>
+<link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<style>
+/* ── RESET & VARS ─────────────────────────────────────────────── */
+:root{
+  --navy:#0D1B2A; --gold:#D4A017; --gold-light:#f0c84a;
+  --navy-soft:#12253a; --mid:#6C757D; --light:#F2F4F7; --white:#ffffff;
+  --tr:0.3s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden;}
+img{max-width:100%;display:block;}
+
+/* ── UTILITIES ────────────────────────────────────────────────── */
+.container{max-width:1200px;margin:0 auto;padding:0 32px;}
+.section{padding:96px 0;}
+.section-alt{background:var(--light);}
+.section-dark{background:var(--navy);}
+.section-label{
+  font-size:11px;letter-spacing:4px;font-weight:700;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.section-label::before{content:'';width:30px;height:2px;background:var(--gold);flex-shrink:0;}
+.section-label-center{justify-content:center;}
+.section-title{font-size:clamp(26px,4vw,46px);font-weight:800;line-height:1.1;color:var(--navy);margin-bottom:20px;}
+.section-title span{color:var(--gold);}
+.section-title-white{color:var(--white);}
+.section-title-center{text-align:center;}
+.section-body{font-size:15px;line-height:1.8;color:var(--mid);max-width:580px;}
+.text-center{text-align:center;}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 32px;
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;
+  transition:var(--tr);text-decoration:none;border-radius:8px;
+}
+.btn-primary{background:var(--gold);color:var(--navy);}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,160,23,.35);}
+.btn-outline{background:transparent;color:var(--white);border:2px solid var(--white);}
+.btn-outline:hover{background:var(--white);color:var(--navy);}
+.btn-navy{background:var(--navy);color:var(--white);}
+.btn-navy:hover{background:var(--navy-soft);transform:translateY(-2px);}
+.btn-full{width:100%;justify-content:center;}
+
+/* ── ION-ICONS ────────────────────────────────────────────────── */
+ion-icon{font-size:1em;vertical-align:middle;pointer-events:none;}
+.service-icon ion-icon,.service-full-icon ion-icon{font-size:26px;color:var(--navy);transition:var(--tr);}
+.service-card:hover .service-icon ion-icon{color:var(--navy);}
+.value-icon ion-icon{font-size:28px;color:var(--gold);}
+.contact-icon ion-icon{font-size:22px;color:var(--gold);}
+.social-icon ion-icon{font-size:18px;}
+.map-icon ion-icon{font-size:44px;color:var(--gold);}
+
+/* ── PAGE SYSTEM ──────────────────────────────────────────────── */
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+
+/* ── NAVBAR ───────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(13,27,42,.08);transition:var(--tr);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  height:72px;padding:0 32px;max-width:1200px;margin:0 auto;
+}
+.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none;}
+.nav-logo-img{
+  width:46px;height:46px;object-fit:contain;flex-shrink:0;
+  display:block;
+}
+.logo-img {
+  display: block;
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+.logo-text{line-height:1.1;}
+.logo-name{font-size:15px;font-weight:800;letter-spacing:2px;color:var(--navy);text-transform:uppercase;}
+.logo-sub{font-size:8px;letter-spacing:3px;color:var(--gold);font-weight:600;text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{
+  padding:8px 14px;font-size:11px;font-weight:600;letter-spacing:1px;
+  text-transform:uppercase;color:var(--navy);text-decoration:none;
+  transition:var(--tr);border-bottom:2px solid transparent;cursor:pointer;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);border-bottom-color:var(--gold);}
+.nav-cta{margin-left:12px;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.hamburger span{width:24px;height:2px;background:var(--navy);transition:var(--tr);}
+.mobile-menu{
+  display:none;position:fixed;top:72px;left:0;right:0;
+  background:var(--white);border-top:1px solid var(--light);
+  padding:16px;z-index:999;flex-direction:column;gap:4px;
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{
+  padding:14px 16px;font-size:13px;font-weight:600;letter-spacing:1px;
+  text-transform:uppercase;color:var(--navy);text-decoration:none;
+  border-bottom:1px solid var(--light);cursor:pointer;
+}
+.mobile-menu a:hover{color:var(--gold);}
+
+/* ── HOME: HERO ───────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;background:linear-gradient(135deg,var(--navy) 0%,#1a3555 60%,#0d1b2a 100%);
+  display:flex;align-items:center;position:relative;overflow:hidden;padding-top:72px;
+}
+.hero-orb{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,.18) 0%,transparent 70%);}
+.hero-orb-1{width:600px;height:600px;top:-200px;right:-100px;}
+.hero-orb-2{width:400px;height:400px;bottom:-150px;left:200px;}
+.hero-content{
+  position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;
+  gap:64px;align-items:center;padding:80px 32px;max-width:1200px;margin:0 auto;width:100%;
+}
+.hero-eyebrow{
+  font-size:11px;letter-spacing:5px;font-weight:700;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);}
+.hero-title{
+  font-size:clamp(30px,4.5vw,60px);font-weight:900;line-height:1.05;
+  color:var(--white);margin-bottom:24px;letter-spacing:-1px;
+}
+.hero-title .accent{color:var(--gold);display:block;}
+.hero-subtitle{font-size:15px;line-height:1.8;color:rgba(255,255,255,.65);margin-bottom:40px;max-width:460px;}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.hero-stats{display:flex;gap:28px;margin-top:48px;padding-top:36px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;}
+.stat-num{font-size:30px;font-weight:900;color:var(--gold);line-height:1;}
+.stat-label{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-top:4px;}
+.hero-visual{display:flex;align-items:center;}
+.hero-main-img-wrap{
+  position:relative;width:100%;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(212,160,23,.25);
+  aspect-ratio:3/4;max-height:580px;
+  box-shadow:0 40px 80px rgba(0,0,0,.35);
+}
+.hero-main-img-wrap img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:transform .7s,opacity .4s;}
+.hero-main-img-wrap:hover img{transform:scale(1.04);opacity:1;}
+.hero-badge{
+  position:absolute;bottom:16px;left:16px;background:var(--gold);color:var(--navy);
+  font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;
+  border-radius:6px;
+}
+
+/* ── HOME: SERVICES GRID ──────────────────────────────────────── */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;}
+.service-card{
+  background:var(--white);padding:40px 32px;border:1px solid rgba(13,27,42,.06);
+  transition:var(--tr);position:relative;overflow:hidden;cursor:pointer;border-radius:12px;
+}
+.service-card::before{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--gold);transition:width .4s;}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(13,27,42,.12);z-index:1;}
+.service-card:hover::before{width:100%;}
+.service-icon{
+  width:52px;height:52px;background:var(--light);display:flex;align-items:center;
+  justify-content:center;margin-bottom:20px;font-size:22px;transition:var(--tr);border-radius:10px;
+}
+.service-card:hover .service-icon{background:var(--gold);}
+.service-card-title{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.service-card-body{font-size:13px;line-height:1.7;color:var(--mid);}
+.service-card-num{position:absolute;top:20px;right:24px;font-size:48px;font-weight:900;color:rgba(13,27,42,.04);line-height:1;}
+
+/* ── VALUES STRIP ─────────────────────────────────────────────── */
+.values-strip{background:var(--navy);padding:64px 0;}
+.values-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);}
+.value-item{padding:40px 20px;text-align:center;background:var(--navy);transition:var(--tr);}
+.value-item:hover{background:var(--navy-soft);}
+.value-icon{font-size:26px;margin-bottom:14px;}
+.value-name{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.value-desc{font-size:12px;line-height:1.6;color:rgba(255,255,255,.5);}
+
+/* ── IMAGE BAND ───────────────────────────────────────────────── */
+.img-band{display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden;}
+.img-band-item{position:relative;overflow:hidden;height:300px;}
+.img-band-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.img-band-item:hover img{transform:scale(1.08);}
+.img-band-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.7) 0%,transparent 60%);}
+.img-band-label{position:absolute;bottom:16px;left:16px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+
+/* ── WHY US ───────────────────────────────────────────────────── */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.why-img{position:relative;}
+.why-main-img{width:100%;height:480px;object-fit:cover;border:1px solid rgba(13,27,42,.08);border-radius: 15px;}
+.why-badge-card{position:absolute;bottom:-24px;right:-24px;background:var(--gold);padding:24px 28px;min-width:180px;border-radius:12px;}
+.why-badge-num{font-size:40px;font-weight:900;color:var(--navy);line-height:1;}
+.why-badge-text{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--navy);margin-top:4px;}
+.check-list{list-style:none;margin-top:28px;}
+.check-list li{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--light);font-size:14px;line-height:1.6;color:var(--mid);}
+.check-list li::before{content:'';width:20px;height:20px;flex-shrink:0;background:var(--gold);clip-path:polygon(14% 44%,0 65%,50% 100%,100% 0%,80% 0%,43% 62%);margin-top:2px;}
+.why-actions{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;}
+
+/* ── PAGE HERO ────────────────────────────────────────────────── */
+.page-hero{background:var(--navy);padding:160px 0 80px;position:relative;overflow:hidden;}
+.page-hero-content{position:relative;z-index:2;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;font-weight:600;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:24px;}
+.breadcrumb span{color:var(--gold);}
+.page-hero-title{font-size:clamp(32px,5vw,64px);font-weight:900;color:var(--white);line-height:1;margin-bottom:20px;}
+.page-hero-title em{color:var(--gold);font-style:normal;}
+.page-hero-subtitle{font-size:15px;line-height:1.8;color:rgba(255,255,255,.55);max-width:520px;}
+
+/* ── ABOUT PAGE ───────────────────────────────────────────────── */
+.about-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-img-stack{position:relative;min-height:400px;}
+.about-img-main{width:100%;height:500px;object-fit:cover;border-radius: 10px;}
+.about-img-accent{
+  position:absolute;bottom:-32px;right:-24px;width:180px;height:180px;
+  object-fit:cover;border:6px solid var(--white);box-shadow:0 20px 60px rgba(0,0,0,.15);border-radius: 15px;
+}
+.about-year-badge{
+  position:absolute;top:24px;left:-12px;background:var(--gold);padding:16px 12px;
+  writing-mode:vertical-rl;text-orientation:mixed;font-size:10px;font-weight:800;
+  letter-spacing:3px;text-transform:uppercase;color:var(--navy);
+}
+.about-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
+.about-stat-box{padding:24px;background:var(--light);border-radius:10px;}
+.about-stat-num{font-size:28px;font-weight:900;color:var(--gold);}
+.about-stat-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-top:4px;}
+
+/* ── MEANING SECTION ──────────────────────────────────────────── */
+.meaning-section{background:var(--navy);}
+.meaning-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.meaning-items{display:flex;flex-direction:column;}
+.meaning-row{display:flex;align-items:center;gap:20px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+.meaning-row:last-child{border-bottom:none;}
+.meaning-letters{font-size:36px;font-weight:900;color:var(--gold);min-width:72px;line-height:1;}
+.meaning-equals{font-size:22px;color:rgba(255,255,255,.2);margin:0 4px;flex-shrink:0;}
+.meaning-word{font-size:17px;font-weight:700;color:var(--white);}
+.meaning-sub-text{font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;}
+.meaning-tagline{margin-top:32px;padding:24px;border:1px solid rgba(212,160,23,.3);background:rgba(212,160,23,.06);border-radius:10px;}
+.meaning-tagline p{font-size:16px;font-style:italic;color:rgba(255,255,255,.8);font-family:'Crimson Pro',serif;line-height:1.6;}
+.meaning-tagline strong{color:var(--gold);font-style:normal;}
+
+/* ── MISSION/VISION/VALUES ────────────────────────────────────── */
+.mvv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.mvv-card{padding:48px 36px;}
+.mvv-card-white{background:var(--white);}
+.mvv-card-navy{background:var(--navy);}
+.mvv-card-gold{background:var(--gold);}
+.mvv-heading{font-size:22px;font-weight:800;margin-bottom:16px;}
+.mvv-heading-dark{color:var(--navy);}
+.mvv-heading-white{color:var(--white);}
+.mvv-body{font-size:14px;line-height:1.8;}
+.mvv-body-mid{color:var(--mid);}
+.mvv-body-light{color:rgba(255,255,255,.55);}
+.mvv-body-navy{color:rgba(13,27,42,.7);}
+
+/* ── TIMELINE ─────────────────────────────────────────────────── */
+.timeline{position:relative;margin-top:60px;}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--light);transform:translateX(-50%);}
+.timeline-item{display:flex;gap:40px;align-items:flex-start;margin-bottom:48px;position:relative;}
+.timeline-item:nth-child(even){flex-direction:row-reverse;}
+.timeline-item:nth-child(even) .timeline-text{text-align:right;}
+.timeline-text{flex:1;padding:0 40px;}
+.timeline-year{font-size:32px;font-weight:900;color:var(--gold);line-height:1;}
+.timeline-event{font-size:14px;font-weight:700;margin-top:8px;}
+.timeline-desc{font-size:13px;color:var(--mid);line-height:1.7;margin-top:6px;}
+.timeline-dot{position:absolute;left:50%;top:8px;width:16px;height:16px;background:var(--gold);border:3px solid var(--white);border-radius:50%;transform:translateX(-50%);box-shadow:0 0 0 4px rgba(212,160,23,.2);}
+.timeline-spacer{flex:1;}
+
+/* ── SERVICES FULL GRID ───────────────────────────────────────── */
+.services-full-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:60px;}
+.service-full-card{background:var(--light);padding:48px 40px;position:relative;overflow:hidden;transition:var(--tr);cursor:pointer;border-radius:16px;}
+.service-full-card:hover{background:var(--navy);}
+.service-full-card:hover .service-full-icon{background:var(--gold);}
+.service-full-card:hover .service-full-title{color:var(--white);}
+.service-full-card:hover .service-full-body{color:rgba(255,255,255,.6);}
+.service-full-card:hover .service-items li{color:rgba(255,255,255,.7);}
+.service-full-card:hover .service-items li::before{background:var(--gold);}
+.service-full-icon{width:64px;height:64px;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;transition:var(--tr);border-radius:12px;}
+.service-full-title{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;transition:var(--tr);}
+.service-full-body{font-size:14px;line-height:1.7;color:var(--mid);margin-bottom:20px;transition:var(--tr);}
+.service-items{list-style:none;}
+.service-items li{font-size:12px;color:var(--mid);padding:5px 0;display:flex;align-items:center;gap:10px;transition:var(--tr);}
+.service-items li::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;flex-shrink:0;transition:var(--tr);}
+
+/* ── SERVICE CTA BAND ─────────────────────────────────────────── */
+.service-cta-band{background:var(--gold);padding:80px 0;margin-top:60px;}
+.service-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;max-width:1200px;margin:0 auto;padding:0 32px;flex-wrap:wrap;}
+.service-cta-text h3{font-size:30px;font-weight:900;color:var(--navy);}
+.service-cta-text p{font-size:14px;color:rgba(13,27,42,.65);margin-top:8px;}
+
+/* ── PROCESS STEPS ────────────────────────────────────────────── */
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px;position:relative;}
+.process-steps::before{content:'';position:absolute;top:32px;left:12.5%;right:12.5%;height:1px;background:var(--light);z-index:0;}
+.process-step{text-align:center;padding:0 16px;position:relative;z-index:1;}
+.step-circle{width:64px;height:64px;background:var(--white);border:2px solid var(--light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:var(--gold);margin:0 auto 20px;transition:var(--tr);}
+.process-step:hover .step-circle{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+.step-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.step-desc{font-size:12px;color:var(--mid);line-height:1.6;}
+
+/* ── PROJECTS ─────────────────────────────────────────────────── */
+.projects-filter{display:flex;gap:8px;margin-top:40px;flex-wrap:wrap;}
+.filter-btn{padding:10px 20px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--light);background:var(--white);color:var(--mid);cursor:pointer;transition:var(--tr);border-radius:6px;}
+.filter-btn.active,.filter-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.project-card{position:relative;overflow:hidden;cursor:pointer;border-radius:12px;}
+.project-card img{width:100%;height:280px;object-fit:cover;display:block;transition:transform .6s;}
+.project-card:hover img{transform:scale(1.08);}
+.project-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.9) 0%,rgba(13,27,42,.2) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;transition:var(--tr);}
+.project-card:hover .project-overlay{background:linear-gradient(to top,rgba(13,27,42,.95) 0%,rgba(13,27,42,.6) 100%);}
+.project-cat{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.project-name{font-size:15px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.project-loc{font-size:12px;color:rgba(255,255,255,.5);}
+.project-arrow{position:absolute;top:16px;right:16px;width:38px;height:38px;background:var(--gold);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(-10px);transition:var(--tr);font-size:16px;color:var(--navy);}
+.project-card:hover .project-arrow{opacity:1;transform:translateY(0);}
+.project-card.featured{grid-column:span 2;}
+.project-card.featured img{height:360px;}
+
+/* ── STATS BANNER ─────────────────────────────────────────────── */
+.stats-banner{background:var(--navy);padding:64px 0;margin:80px 0 0;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;}
+.stat-col{padding:24px;border-right:1px solid rgba(255,255,255,.06);}
+.stat-col:last-child{border-right:none;}
+.big-num{font-size:52px;font-weight:900;color:var(--gold);line-height:1;}
+.big-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:8px;}
+
+/* ── TESTIMONIALS ─────────────────────────────────────────────── */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+.testimonial-card{padding:40px 32px;border-radius:16px;}
+.testimonial-card-light{background:var(--light);}
+.testimonial-card-dark{background:var(--navy);}
+.testimonial-quote{font-size:40px;color:var(--gold);font-weight:900;line-height:1;margin-bottom:16px;}
+.testimonial-text{font-family:'Crimson Pro',serif;font-size:16px;line-height:1.8;}
+.testimonial-text-mid{color:var(--mid);}
+.testimonial-text-light{color:rgba(255,255,255,.6);}
+.testimonial-divider{margin-top:24px;padding-top:20px;border-top:1px solid rgba(0,0,0,.06);}
+.testimonial-divider-dark{border-top-color:rgba(255,255,255,.07);}
+.testimonial-name{font-size:13px;font-weight:800;color:var(--navy);}
+.testimonial-name-white{color:var(--white);}
+.testimonial-role{font-size:11px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+/* ── TEAM ─────────────────────────────────────────────────────── */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:60px;}
+.team-card{position:relative;overflow:hidden;cursor:pointer;border-radius:14px;}
+.team-card img{width:100%;height:320px;object-fit:cover;display:block;transition:transform .5s;filter:grayscale(20%);}
+.team-card:hover img{transform:scale(1.05);filter:grayscale(0%);}
+.team-info{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(13,27,42,.95) 0%,transparent 100%);padding:48px 20px 20px;transition:var(--tr);}
+.team-card:hover .team-info{padding-bottom:28px;}
+.team-name{font-size:14px;font-weight:800;color:var(--white);}
+.team-role{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:4px;}
+.team-bio{font-size:12px;color:rgba(255,255,255,.6);line-height:1.6;margin-top:10px;max-height:0;overflow:hidden;transition:max-height .4s;}
+.team-card:hover .team-bio{max-height:80px;}
+
+/* ── CULTURE ──────────────────────────────────────────────────── */
+.culture-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:60px;}
+.culture-card{background:var(--white);padding:40px;display:flex;gap:24px;align-items:flex-start;border-radius:14px;border:1px solid rgba(13,27,42,.06);}
+.culture-num{font-size:48px;font-weight:900;color:var(--gold);line-height:1;flex-shrink:0;}
+.culture-title{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.culture-text{font-size:13px;color:var(--mid);line-height:1.7;}
+.team-cta{background:var(--navy);padding:80px 0;text-align:center;}
+.team-cta h3{font-size:clamp(24px,4vw,36px);font-weight:900;color:var(--white);margin-bottom:12px;}
+.team-cta h3 span{color:var(--gold);}
+.team-cta p{font-size:14px;color:rgba(255,255,255,.55);margin-bottom:32px;}
+
+/* ── CONTACT ──────────────────────────────────────────────────── */
+.contact-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:0;margin-top:60px;}
+.contact-info{background:var(--navy);padding:64px 48px;}
+.contact-info-title{font-size:26px;font-weight:800;color:var(--white);margin-bottom:8px;}
+.contact-info-sub{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:40px;line-height:1.7;}
+.contact-items{display:flex;flex-direction:column;gap:28px;}
+.contact-item{display:flex;gap:16px;align-items:flex-start;}
+.contact-icon{width:44px;height:44px;background:rgba(212,160,23,.1);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:1px solid rgba(212,160,23,.2);border-radius:10px;}
+.contact-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px;}
+.contact-value{font-size:14px;color:rgba(255,255,255,.8);line-height:1.6;}
+.contact-social{margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.07);}
+.contact-social-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px;font-weight:700;}
+.social-icons{display:flex;gap:10px;}
+.social-icon{width:40px;height:40px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:18px;color:rgba(255,255,255,.6);cursor:pointer;transition:var(--tr);font-weight:700;letter-spacing:1px;border-radius:8px;}
+.social-icon:hover{border-color:var(--gold);color:var(--gold);background:rgba(212,160,23,.1);}
+.contact-form-side{background:var(--white);padding:64px 48px;}
+.form-title{font-size:24px;font-weight:800;margin-bottom:8px;}
+.form-sub{font-size:14px;color:var(--mid);margin-bottom:36px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);margin-bottom:8px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 16px;font-family:'Montserrat',sans-serif;font-size:13px;background:var(--light);border:1px solid transparent;color:var(--navy);transition:var(--tr);outline:none;appearance:none;resize:vertical;border-radius:8px;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(212,160,23,.15);}
+
+/* ── MAP ──────────────────────────────────────────────────────── */
+.map-section{height:300px;background:var(--light);position:relative;overflow:hidden;margin-top:3px;}
+.map-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--navy) 0%,#1a3555 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;}
+.map-address{font-size:18px;font-weight:800;color:var(--white);text-align:center;}
+.map-text{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:2px;text-transform:uppercase;}
+
+/* ── EMERGENCY STRIP ──────────────────────────────────────────── */
+.emergency-strip{background:var(--gold);padding:48px 0;}
+.emergency-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.emergency-title{font-size:20px;font-weight:900;color:var(--navy);}
+.emergency-sub{font-size:13px;color:rgba(13,27,42,.65);margin-top:4px;}
+.emergency-phone{font-size:clamp(20px,4vw,28px);font-weight:900;color:var(--navy);}
+
+/* ── CTA DARK SECTION ─────────────────────────────────────────── */
+.cta-dark{background:var(--navy);padding:80px 0;text-align:center;}
+.cta-dark h2{font-size:clamp(24px,4vw,42px);font-weight:900;color:var(--white);max-width:600px;margin:0 auto 20px;}
+.cta-dark p{font-size:14px;color:rgba(255,255,255,.5);margin:0 auto 40px;max-width:480px;}
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+footer{background:var(--navy);border-top:1px solid rgba(212,160,23,.2);}
+.footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding:72px 0 56px;}
+.footer-brand-name{font-size:18px;font-weight:900;letter-spacing:3px;color:var(--white);text-transform:uppercase;margin-bottom:4px;}
+.footer-brand-sub{font-size:9px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+.footer-tagline{font-size:13px;line-height:1.7;color:rgba(255,255,255,.4);max-width:240px;}
+.footer-heading{font-size:10px;letter-spacing:3px;font-weight:800;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.footer-links{list-style:none;}
+.footer-links li{margin-bottom:10px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:var(--tr);cursor:pointer;}
+.footer-links a:hover{color:var(--gold);}
+.footer-contact-item{margin-bottom:14px;}
+.footer-contact-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:2px;}
+.footer-contact-val{font-size:13px;color:rgba(255,255,255,.6);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding:20px 0;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.25);}
+.footer-copy span{color:var(--gold);}
+
+/* ── FORM SUCCESS ─────────────────────────────────────────────── */
+.form-success{display:none;margin-top:16px;padding:16px;background:#e8f5e9;border-left:4px solid #4caf50;}
+.form-success p{font-size:13px;font-weight:700;color:#2e7d32;}
+
+/* ── HOME MINI STAT STRIP ─────────────────────────────────────── */
+.mini-stat-strip{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
+.mini-stat-box{padding:24px;background:var(--light);}
+
+/* ── ABOUT SLOGAN BOX ─────────────────────────────────────────── */
+.slogan-box{padding:20px;background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.2);margin-top:16px;}
+.slogan-box p{font-size:12px;color:var(--gold);font-weight:700;letter-spacing:1px;line-height:1.9;}
+
+/* ── ANIMATIONS ───────────────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.page.active .animate-1{animation:fadeUp .6s ease forwards;}
+.page.active .animate-2{animation:fadeUp .6s .1s ease forwards;opacity:0;}
+.page.active .animate-3{animation:fadeUp .6s .2s ease forwards;opacity:0;}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════════════════════════════ */
+
+/* TABLET: 1024px */
+@media(max-width:1024px){
+  .container{padding:0 24px;}
+  .section{padding:72px 0;}
+  /* nav */
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  /* hero */
+  .hero-content{grid-template-columns:1fr;gap:40px;padding:60px 24px 72px;}
+  .hero-main-img-wrap{aspect-ratio:16/9;max-height:400px;border-radius:16px;}
+  .hero-subtitle{max-width:100%;}
+  /* services */
+  .services-grid{grid-template-columns:1fr 1fr;}
+  /* values */
+  .values-grid{grid-template-columns:1fr 1fr 1fr;}
+  /* img band */
+  .img-band{grid-template-columns:1fr 1fr;}
+  .img-band-item{height:220px;}
+  /* why */
+  .why-grid{grid-template-columns:1fr;gap:48px;}
+  .why-main-img{height:380px;}
+  .why-badge-card{position:static;display:inline-block;margin-top:16px;}
+  /* about */
+  .about-intro{grid-template-columns:1fr;gap:48px;}
+  .about-img-stack{min-height:auto;}
+  .about-img-main{height:400px;}
+  .about-img-accent{right:-12px;width:150px;height:150px;}
+  .about-year-badge{left:-4px;}
+  /* meaning */
+  .meaning-grid{grid-template-columns:1fr;gap:40px;}
+  /* mvv */
+  .mvv-grid{grid-template-columns:1fr;}
+  /* timeline */
+  .timeline::before{display:none;}
+  .timeline-item,.timeline-item:nth-child(even){flex-direction:column;}
+  .timeline-item:nth-child(even) .timeline-text{text-align:left;}
+  .timeline-dot,.timeline-spacer{display:none;}
+  .timeline-text{padding:0;}
+  /* services full */
+  .services-full-grid{grid-template-columns:1fr;}
+  /* process */
+  .process-steps{grid-template-columns:1fr 1fr;gap:32px;}
+  .process-steps::before{display:none;}
+  /* projects */
+  .projects-grid{grid-template-columns:1fr 1fr;}
+  .project-card.featured{grid-column:span 1;}
+  .project-card.featured img{height:280px;}
+  /* stats */
+  .stats-row{grid-template-columns:1fr 1fr;}
+  /* testimonials */
+  .testimonials-grid{grid-template-columns:1fr;}
+  /* team */
+  .team-grid{grid-template-columns:1fr 1fr;}
+  /* culture */
+  .culture-grid{grid-template-columns:1fr;}
+  /* contact */
+  .contact-layout{grid-template-columns:1fr;}
+  /* footer */
+  .footer-main{grid-template-columns:1fr 1fr;gap:32px;padding:56px 0 40px;}
+}
+
+/* MOBILE: 640px */
+@media(max-width:640px){
+  .container{padding:0 16px;}
+  .nav-inner{padding:0 16px;}
+  .section{padding:56px 0;}
+  /* hero */
+  .hero-content{padding:40px 16px 60px;gap:32px;}
+  .hero-title{font-size:clamp(28px,8vw,42px);letter-spacing:-0.5px;}
+  .hero-stats{gap:16px;margin-top:32px;padding-top:24px;}
+  .stat-num{font-size:24px;}
+  .hero-actions{flex-direction:column;align-items:flex-start;}
+  .hero-actions .btn{width:100%;justify-content:center;}
+  .hero-main-img-wrap{aspect-ratio:4/3;max-height:320px;border-radius:12px;}
+  /* services grid */
+  .services-grid{grid-template-columns:1fr;}
+  /* values */
+  .values-grid{grid-template-columns:1fr;}
+  /* img band */
+  .img-band{grid-template-columns:1fr;}
+  .img-band-item{height:200px;}
+  /* why badge */
+  .why-badge-card{width:100%;}
+  /* page hero */
+  .page-hero{padding:110px 0 56px;}
+  .page-hero-title{font-size:32px;}
+  /* about img */
+  .about-img-main{height:280px;}
+  .about-img-accent{display:none;}
+  .about-year-badge{display:none;}
+  /* about stats */
+  .about-stats-grid{grid-template-columns:1fr 1fr;}
+  /* mvv */
+  .mvv-card{padding:36px 24px;}
+  /* services full */
+  .service-full-card{padding:36px 24px;}
+  /* process */
+  .process-steps{grid-template-columns:1fr;}
+  /* projects */
+  .projects-grid{grid-template-columns:1fr;}
+  .project-card.featured{grid-column:span 1;}
+  .project-card img,.project-card.featured img{height:240px;}
+  /* stats */
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .big-num{font-size:36px;}
+  /* testimonials */
+  .testimonials-grid{grid-template-columns:1fr;}
+  /* team */
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .team-card img{height:220px;}
+  .team-name{font-size:12px;}
+  .team-role{font-size:9px;}
+  /* culture */
+  .culture-card{flex-direction:column;gap:12px;padding:28px 20px;}
+  /* contact */
+  .contact-info,.contact-form-side{padding:40px 24px;}
+  /* form */
+  .form-row{grid-template-columns:1fr;}
+  /* service cta */
+  .service-cta-inner{flex-direction:column;align-items:flex-start;}
+  .service-cta-text h3{font-size:22px;}
+  /* emergency strip */
+  .emergency-inner{flex-direction:column;text-align:center;}
+  /* footer */
+  .footer-main{grid-template-columns:1fr;gap:28px;padding:48px 0 32px;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  /* misc */
+  .mini-stat-strip{grid-template-columns:1fr 1fr;}
+  .meaning-row{flex-wrap:wrap;}
+  .meaning-letters{font-size:28px;}
+  .cta-dark{padding:60px 0;}
+  .team-cta{padding:56px 0;}
+}
+
+/* SMALL MOBILE: 400px */
+@media(max-width:400px){
+  .team-grid{grid-template-columns:1fr;}
+  .team-card img{height:280px;}
+  .about-stats-grid{grid-template-columns:1fr;}
+  .mini-stat-strip{grid-template-columns:1fr;}
+  .hero-stats{flex-direction:column;gap:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" aria-label="Logo">
+          <img src="logo2.png" alt="Logo2" class="logo-img">
+        </a>
+    <div class="nav-links">
+      <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+      <a onclick="showPage('about')" id="nav-about">About</a>
+      <a onclick="showPage('services')" id="nav-services">Services</a>
+      <a onclick="showPage('projects')" id="nav-projects">Projects</a>
+      <a onclick="showPage('team')" id="nav-team">Our Team</a>
+      <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+    </div>
+    <a class="btn btn-primary nav-cta" onclick="showPage('contact')">Get a Quote</a>
+    <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');closeMenu()">Home</a>
+  <a onclick="showPage('about');closeMenu()">About</a>
+  <a onclick="showPage('services');closeMenu()">Services</a>
+  <a onclick="showPage('projects');closeMenu()">Projects</a>
+  <a onclick="showPage('team');closeMenu()">Our Team</a>
+  <a onclick="showPage('contact');closeMenu()">Contact Us</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HOME
+══════════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content">
+      <div class="animate-1">
+        
+        <h1 class="hero-title">
+          Engineering<br>Solutions.
+          <span class="accent">Powered by</span>
+          Purpose.
+        </h1>
+        <p class="hero-subtitle">Elinara Engineering Ltd designs, installs, maintains and supports intelligent systems that connect, protect and power communities across the world.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" onclick="showPage('services')">Explore Services</a>
+          <a class="btn btn-outline" onclick="showPage('projects')">View Projects</a>
+        </div>
+        
+      </div>
+      <div class="hero-visual animate-2">
+        <div class="hero-main-img-wrap">
+          <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=900&q=85" alt="Field Engineering — Elinara Engineering Ltd">
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Our Engineering <span>Solutions</span></h2>
+      <p class="section-body">From telecommunications infrastructure to power control systems, we deliver end-to-end engineering solutions built to global standards.</p>
+      <div class="services-grid">
+        <div class="service-card" onclick="showPage('services')">
+          <div class="service-card-num">01</div>
+          <div class="service-icon"><ion-icon name="radio-outline"></ion-icon></div>
+          <div class="service-card-title">Telecommunication Systems</div>
+          <div class="service-card-body">PABX, Access Control, Alarms, PA Systems, Networking and integrated communication infrastructure.</div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <div class="service-card-num">02</div>
+          <div class="service-icon"><ion-icon name="cog-outline"></ion-icon></div>
+          <div class="service-card-title">Electronics Solutions</div>
+          <div class="service-card-body">Board repairs, troubleshooting and component level repair by certified electronics professionals.</div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <div class="service-card-num">03</div>
+          <div class="service-icon"><ion-icon name="print-outline"></ion-icon></div>
+          <div class="service-card-title">Large Format Solutions</div>
+          <div class="service-card-body">Sales, installation, maintenance and spare parts for large format printing systems.</div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <div class="service-card-num">04</div>
+          <div class="service-icon"><ion-icon name="build-outline"></ion-icon></div>
+          <div class="service-card-title">Field Engineering Services</div>
+          <div class="service-card-body">Installations, maintenance and technical support locally and internationally, always on-time.</div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <div class="service-card-num">05</div>
+          <div class="service-icon"><ion-icon name="flash-outline"></ion-icon></div>
+          <div class="service-card-title">Power &amp; Control Systems</div>
+          <div class="service-card-body">Electrical, automation, power backup and control systems engineered for reliability.</div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <div class="service-card-num">06</div>
+          <div class="service-icon"><ion-icon name="git-network-outline"></ion-icon></div>
+          <div class="service-card-title">Systems Integration</div>
+          <div class="service-card-body">Smart, reliable and scalable engineering solutions that bring all systems together seamlessly.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Band -->
+  <div class="img-band">
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Infrastructure"><div class="img-band-overlay"></div><div class="img-band-label">Infrastructure</div></div>
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80" alt="Expert Team"><div class="img-band-overlay"></div><div class="img-band-label">Expert Team</div></div>
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Control Systems"><div class="img-band-overlay"></div><div class="img-band-label">Control Systems</div></div>
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1601132359864-c974e79890ac?w=600&q=80" alt="Networking"><div class="img-band-overlay"></div><div class="img-band-label">Networking</div></div>
+  </div>
+
+  <!-- Core Values -->
+  <div class="values-strip">
+    <div class="container">
+      <div class="values-grid">
+        <div class="value-item"><div class="value-icon"><ion-icon name="shield-checkmark-outline"></ion-icon></div><div class="value-name">Integrity</div><div class="value-desc">We do the right thing, always.</div></div>
+        <div class="value-item"><div class="value-icon"><ion-icon name="bulb-outline"></ion-icon></div><div class="value-name">Innovation</div><div class="value-desc">We embrace technology to deliver the best.</div></div>
+        <div class="value-item"><div class="value-icon"><ion-icon name="trophy-outline"></ion-icon></div><div class="value-name">Excellence</div><div class="value-desc">We are committed to the highest standards.</div></div>
+        <div class="value-item"><div class="value-icon"><ion-icon name="people-outline"></ion-icon></div><div class="value-name">Reliability</div><div class="value-desc">We build lasting relationships and trust.</div></div>
+        <div class="value-item"><div class="value-icon"><ion-icon name="globe-outline"></ion-icon></div><div class="value-name">Global Impact</div><div class="value-desc">We create solutions that make a real difference.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Us -->
+  <section class="section">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-img">
+          <img class="why-main-img" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&q=80" alt="Engineer at work">
+          <div class="why-badge-card">
+            <div class="why-badge-num">200+</div>
+            <div class="why-badge-text">Projects Completed</div>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">Why Choose Us</div>
+          <h2 class="section-title">Global Standards.<br><span>Local Commitment.</span></h2>
+          <p class="section-body">With deep roots in Nigeria and a global outlook, Elinara Engineering brings world-class expertise to every project — from the largest infrastructure rollout to precise component-level repairs.</p>
+          <ul class="check-list">
+            <li>Certified engineers with international training and experience</li>
+            <li>Full lifecycle support — design, installation, maintenance</li>
+            <li>Rapid response 24/7 support for critical systems</li>
+            <li>Safety-first approach on every job site</li>
+            <li>Transparent communication and project reporting</li>
+          </ul>
+          <div class="why-actions">
+            <a class="btn btn-primary" onclick="showPage('about')">Our Story</a>
+            <a class="btn btn-navy" onclick="showPage('contact')">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Dark -->
+  <div class="cta-dark">
+    <div class="container">
+      <div class="section-label section-label-center" style="color:var(--gold);">Ready to Start?</div>
+      <h2 style="font-size:clamp(26px,4vw,42px);font-weight:900;color:var(--white);max-width:600px;margin:0 auto 20px;text-align:center;">Have a Project in Mind?</h2>
+      <p style="font-size:14px;color:rgba(255,255,255,.5);margin:0 auto 40px;max-width:480px;text-align:center;">Our team of engineers is ready to help you design, build and maintain the systems that power your operations.</p>
+      <div style="text-align:center;"><a class="btn btn-primary" onclick="showPage('contact')">Start Your Project</a></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div>
+          <div class="footer-brand-name">Elinara</div>
+          <div class="footer-brand-sub">Engineering Ltd</div>
+          <p class="footer-tagline">Engineering Solutions. Powered by Purpose. God's presence bringing light and guidance.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Navigation</div>
+          <ul class="footer-links">
+            <li><a onclick="showPage('home')">Home</a></li>
+            <li><a onclick="showPage('about')">About Us</a></li>
+            <li><a onclick="showPage('services')">Services</a></li>
+            <li><a onclick="showPage('projects')">Projects</a></li>
+            <li><a onclick="showPage('team')">Our Team</a></li>
+            <li><a onclick="showPage('contact')">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <ul class="footer-links">
+            <li><a onclick="showPage('services')">Telecom Systems</a></li>
+            <li><a onclick="showPage('services')">Electronics Solutions</a></li>
+            <li><a onclick="showPage('services')">Large Format</a></li>
+            <li><a onclick="showPage('services')">Field Engineering</a></li>
+            <li><a onclick="showPage('services')">Power &amp; Control</a></li>
+            <li><a onclick="showPage('services')">Systems Integration</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <div class="footer-contact-item"><div class="footer-contact-label">Phone</div><div class="footer-contact-val">+234 903 499 6849</div></div>
+          <div class="footer-contact-item"><div class="footer-contact-label">Email</div><div class="footer-contact-val">info@elinaraengineering.com</div></div>
+          <div class="footer-contact-item"><div class="footer-contact-label">Location</div><div class="footer-contact-val">Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 <span>Elinara Engineering Ltd</span>. All rights reserved.</div>
+        <div class="footer-copy">Engineering Solutions. Powered by Purpose.</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-about">
+
+  <div class="page-hero">
+    <div class="container page-hero-content">
+      
+      <h1 class="page-hero-title animate-1">About <em>Elinara</em><br>Engineering Ltd</h1>
+      <p class="page-hero-subtitle animate-2">A global engineering solutions company committed to excellence, innovation and integrity — connecting, protecting and powering communities across the world.</p>
+    </div>
+  </div>
+
+  <!-- Brand Story -->
+  <section class="section">
+    <div class="container">
+      <div class="about-intro">
+        <div class="about-img-stack">
+          <img class="about-img-main" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Elinara team at work">
+          <img class="about-img-accent" src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80" alt="Engineering closeup">
+          
+        </div>
+        <div>
+          <div class="section-label">Our Brand Story</div>
+          <h2 class="section-title">Built on <span>Purpose,</span><br>Driven by Excellence</h2>
+          <p class="section-body">Elinara Engineering Ltd is a global engineering solutions company committed to excellence, innovation and integrity. We design, install, maintain and support intelligent systems that connect, protect and power communities across the world.</p>
+          <p class="section-body" style="margin-top:16px;">From our roots in Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria, we have grown into a trusted name for engineering excellence — delivering projects that meet the highest international benchmarks while staying connected to the communities we serve.</p>
+          <div class="about-stats-grid">
+            <div class="about-stat-box"><div class="about-stat-num">12+</div><div class="about-stat-label">Years of Excellence</div></div>
+            <div class="about-stat-box"><div class="about-stat-num">50+</div><div class="about-stat-label">Expert Engineers</div></div>
+            <div class="about-stat-box"><div class="about-stat-num">200+</div><div class="about-stat-label">Projects Delivered</div></div>
+            <div class="about-stat-box"><div class="about-stat-num">24/7</div><div class="about-stat-label">Support Always Ready</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meaning -->
+  <section class="section meaning-section">
+    <div class="container">
+      <div class="meaning-grid">
+        <div>
+          <div class="section-label">The Meaning Behind Elinara</div>
+          <h2 class="section-title section-title-white">A Name With<br><span>Deep Purpose</span></h2>
+          <p class="section-body" style="color:rgba(255,255,255,.55);">Every letter of our name carries meaning. Together, they capture our mission: to bring divine guidance, wisdom and excellence to everything we engineer.</p>
+          <div class="meaning-tagline">
+            <p><strong>Together:</strong> God's presence bringing light and guidance — the foundation of everything we build.</p>
+          </div>
+        </div>
+        <div class="meaning-items">
+          <div class="meaning-row">
+            <div class="meaning-letters">ELI</div>
+            <div class="meaning-equals">=</div>
+            <div><div class="meaning-word">God / Divine Presence</div><div class="meaning-sub-text">The foundation of our purpose</div></div>
+          </div>
+          <div class="meaning-row">
+            <div class="meaning-letters">INA</div>
+            <div class="meaning-equals">=</div>
+            <div><div class="meaning-word">Guidance, Wisdom</div><div class="meaning-sub-text">How we approach every challenge</div></div>
+          </div>
+          <div class="meaning-row">
+            <div class="meaning-letters">RA</div>
+            <div class="meaning-equals">=</div>
+            <div><div class="meaning-word">Light, Flow, Excellence</div><div class="meaning-sub-text">The quality of our output</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission / Vision / Values -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="mvv-grid">
+        <div class="mvv-card mvv-card-white">
+          <div class="section-label">Mission</div>
+          <h3 class="mvv-heading mvv-heading-dark">What We Do</h3>
+          <p class="mvv-body mvv-body-mid">To design, deliver and support world-class engineering solutions that empower businesses and communities with reliable, intelligent infrastructure.</p>
+        </div>
+        <div class="mvv-card mvv-card-navy">
+          <div class="section-label">Vision</div>
+          <h3 class="mvv-heading mvv-heading-white">Where We're Going</h3>
+          <p class="mvv-body mvv-body-light">To be Africa's most trusted engineering solutions provider — recognized globally for excellence, innovation and lasting impact.</p>
+        </div>
+        <div class="mvv-card mvv-card-gold">
+          <div class="section-label" style="color:var(--navy);">Values</div>
+          <h3 class="mvv-heading mvv-heading-dark">How We Work</h3>
+          <p class="mvv-body mvv-body-navy">Integrity, Innovation, Excellence, Reliability and Global Impact — not just words, but the principles that guide every decision we make.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Band -->
+  <div class="img-band">
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80" alt="Workshop"><div class="img-band-overlay"></div><div class="img-band-label">Our Workshop</div></div>
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=80" alt="Field work"><div class="img-band-overlay"></div><div class="img-band-label">Field Operations</div></div>
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80" alt="Office"><div class="img-band-overlay"></div><div class="img-band-label">Our Offices</div></div>
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80" alt="Fleet"><div class="img-band-overlay"></div><div class="img-band-label">Our Fleet</div></div>
+  </div>
+
+  <!-- Timeline -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label section-label-center">Our Journey</div>
+      <h2 class="section-title section-title-center">Growing With <span>Purpose</span></h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-text"><div class="timeline-year">2012</div><div class="timeline-event">Company Founded</div><div class="timeline-desc">Elinara Engineering Ltd was established in Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria with a vision to deliver world-class engineering solutions to the African market.</div></div>
+          <div class="timeline-dot"></div><div class="timeline-spacer"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-spacer"></div><div class="timeline-dot"></div>
+          <div class="timeline-text"><div class="timeline-year">2015</div><div class="timeline-event">Expanded Service Portfolio</div><div class="timeline-desc">Added Power &amp; Control Systems and Field Engineering Services to our portfolio, broadening our capacity to serve industrial clients.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-text"><div class="timeline-year">2018</div><div class="timeline-event">International Certifications</div><div class="timeline-desc">Achieved key international certifications, enabling us to operate on global standards and win contracts across West Africa.</div></div>
+          <div class="timeline-dot"></div><div class="timeline-spacer"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-spacer"></div><div class="timeline-dot"></div>
+          <div class="timeline-text"><div class="timeline-year">2024</div><div class="timeline-event">200+ Projects Milestone</div><div class="timeline-desc">Celebrated delivering over 200 successful projects across telecom, power, electronics and systems integration sectors.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div><div class="footer-brand-name">Elinara</div><div class="footer-brand-sub">Engineering Ltd</div><p class="footer-tagline">Engineering Solutions. Powered by Purpose.</p></div>
+        <div><div class="footer-heading">Navigation</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('projects')">Projects</a></li><li><a onclick="showPage('team')">Our Team</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div><div class="footer-heading">Contact</div><div class="footer-contact-item"><div class="footer-contact-label">Phone</div><div class="footer-contact-val">+234 903 499 6849</div></div><div class="footer-contact-item"><div class="footer-contact-label">Email</div><div class="footer-contact-val">info@elinaraengineering.com</div></div><div class="footer-contact-item"><div class="footer-contact-label">Location</div><div class="footer-contact-val">Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria</div></div></div>
+        <div><div class="footer-heading">Slogan</div><p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:16px;">Engineering Solutions. Powered by Purpose.</p><div class="slogan-box"><p>Global Standards.<br>Local Commitment.<br>Lasting Impact.</p></div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-copy">© 2026 <span>Elinara Engineering Ltd</span>. All rights reserved.</div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-services">
+
+  <div class="page-hero">
+    <div class="container page-hero-content">
+      
+      <h1 class="page-hero-title animate-1">Our <em>Engineering</em><br>Solutions</h1>
+      <p class="page-hero-subtitle animate-2">Six core service areas covering every dimension of intelligent systems engineering — designed to connect, protect and power your operations.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="services-full-grid">
+        <div class="service-full-card">
+          <div class="service-full-icon"><ion-icon name="radio-outline"></ion-icon></div>
+          <div class="service-full-title">Telecommunication Systems</div>
+          <div class="service-full-body">We design and deploy comprehensive telecom infrastructure tailored to your operational needs — from small offices to large enterprise networks.</div>
+          <ul class="service-items"><li>PABX Systems</li><li>Access Control</li><li>Alarm Systems</li><li>PA Systems</li><li>Networking &amp; More</li></ul>
+        </div>
+        <div class="service-full-card">
+          <div class="service-full-icon"><ion-icon name="cog-outline"></ion-icon></div>
+          <div class="service-full-title">Electronics Solutions</div>
+          <div class="service-full-body">Expert-level electronics repair and maintenance services that keep your critical equipment performing at peak efficiency.</div>
+          <ul class="service-items"><li>Board Repairs</li><li>Troubleshooting</li><li>Component Level Repair</li><li>Preventive Maintenance</li><li>Equipment Diagnostics</li></ul>
+        </div>
+        <div class="service-full-card">
+          <div class="service-full-icon"><ion-icon name="print-outline"></ion-icon></div>
+          <div class="service-full-title">Large Format Solutions</div>
+          <div class="service-full-body">Complete large format printing solutions — from initial sales and installation to ongoing maintenance and spare parts supply.</div>
+          <ul class="service-items"><li>Equipment Sales</li><li>Professional Installation</li><li>Maintenance Contracts</li><li>Spare Parts Supply</li><li>Operator Training</li></ul>
+        </div>
+        <div class="service-full-card">
+          <div class="service-full-icon"><ion-icon name="build-outline"></ion-icon></div>
+          <div class="service-full-title">Field Engineering Services</div>
+          <div class="service-full-body">On-the-ground engineering expertise deployed wherever you need it — local and international field teams ready to mobilize at short notice.</div>
+          <ul class="service-items"><li>On-site Installations</li><li>Maintenance &amp; Repairs</li><li>Technical Support</li><li>Local &amp; International Deployments</li><li>Emergency Response</li></ul>
+        </div>
+        <div class="service-full-card">
+          <div class="service-full-icon"><ion-icon name="flash-outline"></ion-icon></div>
+          <div class="service-full-title">Power &amp; Control Systems</div>
+          <div class="service-full-body">Reliable power infrastructure and intelligent control systems that keep operations running — from initial design to installation and ongoing management.</div>
+          <ul class="service-items"><li>Electrical Systems</li><li>Automation</li><li>Power Backup Solutions</li><li>Control Systems</li><li>Energy Management</li></ul>
+        </div>
+        <div class="service-full-card">
+          <div class="service-full-icon"><ion-icon name="git-network-outline"></ion-icon></div>
+          <div class="service-full-title">Systems Integration</div>
+          <div class="service-full-body">Bringing all your engineering systems together into one intelligent, scalable platform — built for the demands of today and the growth of tomorrow.</div>
+          <ul class="service-items"><li>Smart Building Solutions</li><li>SCADA Systems</li><li>Unified Communications</li><li>Scalable Architecture</li><li>24/7 Monitoring</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-label section-label-center">How We Work</div>
+      <h2 class="section-title section-title-center">Our <span>Process</span></h2>
+      <div class="process-steps">
+        <div class="process-step"><div class="step-circle">01</div><div class="step-title">Consultation</div><div class="step-desc">We listen, assess your requirements and understand your operational environment thoroughly.</div></div>
+        <div class="process-step"><div class="step-circle">02</div><div class="step-title">Design</div><div class="step-desc">Our engineers create a detailed solution design tailored to your specific needs and budget.</div></div>
+        <div class="process-step"><div class="step-circle">03</div><div class="step-title">Delivery</div><div class="step-desc">Professional installation and commissioning to the highest standards, on time and on budget.</div></div>
+        <div class="process-step"><div class="step-circle">04</div><div class="step-title">Support</div><div class="step-desc">Ongoing maintenance and 24/7 technical support to keep your systems performing optimally.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Band -->
+  <div class="img-band">
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Control systems"><div class="img-band-overlay"></div><div class="img-band-label">Power &amp; Control</div></div>
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1601132359864-c974e79890ac?w=600&q=80" alt="Networking"><div class="img-band-overlay"></div><div class="img-band-label">Telecom Systems</div></div>
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Field engineering"><div class="img-band-overlay"></div><div class="img-band-label">Field Engineering</div></div>
+    <div class="img-band-item"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="Systems integration"><div class="img-band-overlay"></div><div class="img-band-label">Systems Integration</div></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="service-cta-band">
+    <div class="service-cta-inner">
+      <div class="service-cta-text"><h3>Ready to Get Started?</h3><p>Tell us about your engineering challenge and we will design a solution.</p></div>
+      <a class="btn btn-navy" onclick="showPage('contact')">Request a Consultation</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div><div class="footer-brand-name">Elinara</div><div class="footer-brand-sub">Engineering Ltd</div><p class="footer-tagline">Engineering Solutions. Powered by Purpose.</p></div>
+        <div><div class="footer-heading">Navigation</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('projects')">Projects</a></li><li><a onclick="showPage('team')">Our Team</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div><div class="footer-heading">Contact</div><div class="footer-contact-item"><div class="footer-contact-label">Phone</div><div class="footer-contact-val">+234 903 499 6849</div></div><div class="footer-contact-item"><div class="footer-contact-label">Email</div><div class="footer-contact-val">info@elinaraengineering.com</div></div><div class="footer-contact-item"><div class="footer-contact-label">Location</div><div class="footer-contact-val">Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria</div></div></div>
+        <div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-copy">© 2026 <span>Elinara Engineering Ltd</span>. All rights reserved.</div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PROJECTS
+══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-projects">
+
+  <div class="page-hero">
+    <div class="container page-hero-content">
+      
+      <h1 class="page-hero-title animate-1">Our <em>Projects</em><br>Portfolio</h1>
+      <p class="page-hero-subtitle animate-2">Over 200 projects delivered across telecommunications, power systems, electronics and systems integration — each one a testament to our commitment to excellence.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Featured Work</div>
+      <h2 class="section-title">Engineering <span>Excellence</span><br>In Action</h2>
+      <div class="projects-filter">
+        <button class="filter-btn active">All Projects</button>
+        <button class="filter-btn">Telecom</button>
+        <button class="filter-btn">Power Systems</button>
+        <button class="filter-btn">Electronics</button>
+        <button class="filter-btn">Systems Integration</button>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card featured">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80" alt="Infrastructure project">
+          <div class="project-overlay"><div class="project-cat">Telecom &amp; Infrastructure</div><div class="project-name">Lagos Fiber Network Rollout</div><div class="project-loc">Lagos State, Nigeria</div></div>
+          <div class="project-arrow"><ion-icon name="arrow-up-forward-outline"></ion-icon></div>
+        </div>
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80" alt="Power systems">
+          <div class="project-overlay"><div class="project-cat">Power &amp; Control</div><div class="project-name">Industrial Power Backup System</div><div class="project-loc">Abuja, Nigeria</div></div>
+          <div class="project-arrow"><ion-icon name="arrow-up-forward-outline"></ion-icon></div>
+        </div>
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1601132359864-c974e79890ac?w=500&q=80" alt="Networking">
+          <div class="project-overlay"><div class="project-cat">Systems Integration</div><div class="project-name">Corporate HQ Network Integration</div><div class="project-loc">Port Harcourt, Nigeria</div></div>
+          <div class="project-arrow"><ion-icon name="arrow-up-forward-outline"></ion-icon></div>
+        </div>
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&q=80" alt="Electronics repair">
+          <div class="project-overlay"><div class="project-cat">Electronics Solutions</div><div class="project-name">Manufacturing Plant Electronics Overhaul</div><div class="project-loc">Kano, Nigeria</div></div>
+          <div class="project-arrow"><ion-icon name="arrow-up-forward-outline"></ion-icon></div>
+        </div>
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=500&q=80" alt="Field engineering">
+          <div class="project-overlay"><div class="project-cat">Field Engineering</div><div class="project-name">Offshore Platform Technical Support</div><div class="project-loc">Gulf of Guinea</div></div>
+          <div class="project-arrow"><ion-icon name="arrow-up-forward-outline"></ion-icon></div>
+        </div>
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=500&q=80" alt="Construction project">
+          <div class="project-overlay"><div class="project-cat">Telecom Systems</div><div class="project-name">Hospital PABX &amp; Security System</div><div class="project-loc">Ibadan, Nigeria</div></div>
+          <div class="project-arrow"><ion-icon name="arrow-up-forward-outline"></ion-icon></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-banner">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-col"><div class="big-num">200+</div><div class="big-label">Projects Delivered</div></div>
+        <div class="stat-col"><div class="big-num">15+</div><div class="big-label">States Covered</div></div>
+        <div class="stat-col"><div class="big-num">98%</div><div class="big-label">Client Satisfaction</div></div>
+        <div class="stat-col"><div class="big-num">5</div><div class="big-label">Countries Served</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container text-center">
+      <div class="section-label section-label-center">Client Feedback</div>
+      <h2 class="section-title section-title-center">Trusted by <span>Industry Leaders</span></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card testimonial-card-light">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text testimonial-text-mid">Elinara delivered our fiber network rollout on time and to specification. Their team was professional, responsive and meticulous throughout.</p>
+          <div class="testimonial-divider"><div class="testimonial-name">Engr. Chukwudi Okafor</div><div class="testimonial-role">IT Director, Lagos State</div></div>
+        </div>
+        <div class="testimonial-card testimonial-card-dark">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text testimonial-text-light">The power backup system Elinara installed has been flawless. Zero downtime in 18 months. Their after-sales support is second to none.</p>
+          <div class="testimonial-divider testimonial-divider-dark"><div class="testimonial-name testimonial-name-white">Amaka Eze</div><div class="testimonial-role">Operations Manager</div></div>
+        </div>
+        <div class="testimonial-card testimonial-card-light">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text testimonial-text-mid">From CCTV to access control to networking — Elinara handled our entire office fit-out flawlessly. Highly recommended for any systems integration project.</p>
+          <div class="testimonial-divider"><div class="testimonial-name">Tunde Adeyemi</div><div class="testimonial-role">CEO, Apex Group</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div><div class="footer-brand-name">Elinara</div><div class="footer-brand-sub">Engineering Ltd</div><p class="footer-tagline">Engineering Solutions. Powered by Purpose.</p></div>
+        <div><div class="footer-heading">Navigation</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('projects')">Projects</a></li><li><a onclick="showPage('team')">Our Team</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div><div class="footer-heading">Contact</div><div class="footer-contact-item"><div class="footer-contact-label">Phone</div><div class="footer-contact-val">+234 903 499 6849</div></div><div class="footer-contact-item"><div class="footer-contact-label">Email</div><div class="footer-contact-val">info@elinaraengineering.com</div></div><div class="footer-contact-item"><div class="footer-contact-label">Location</div><div class="footer-contact-val">Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria</div></div></div>
+        <div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-copy">© 2026 <span>Elinara Engineering Ltd</span>. All rights reserved.</div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TEAM
+══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-team">
+
+  <div class="page-hero">
+    <div class="container page-hero-content">
+      
+      <h1 class="page-hero-title animate-1">The People Behind<br><em>Our Purpose</em></h1>
+      <p class="page-hero-subtitle animate-2">Skilled professionals driving quality results — a team united by passion for engineering excellence and a commitment to client success.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Leadership</div>
+      <h2 class="section-title">Meet Our <span>Expert Team</span></h2>
+      <div class="team-grid">
+        <div class="team-card"><img src="profile.jpeg" alt="CEO"><div class="team-info"><div class="team-name">Emmanuel Adeyinka</div><div class="team-role">Founder &amp; CEO</div><div class="team-bio">Visionary engineer with 20+ years experience in telecoms and industrial automation, leading Elinara's strategic direction.</div></div></div>
+        <div class="team-card"><img src="profile.jpeg" alt="COO"><div class="team-info"><div class="team-name">Linda Okonkwo</div><div class="team-role">Chief Operations Officer</div><div class="team-bio">Operations expert ensuring every project is delivered on time, within budget and to specification.</div></div></div>
+        <div class="team-card"><img src="profile.jpeg" alt="CTO"><div class="team-info"><div class="team-name">Emeka Nwosu</div><div class="team-role">Chief Technical Officer</div><div class="team-bio">Systems engineer and innovator overseeing technical excellence across all service divisions.</div></div></div>
+        <div class="team-card"><img src="profile.jpeg" alt="Head of Projects"><div class="team-info"><div class="team-name">Fatima Bello</div><div class="team-role">Head of Projects</div><div class="team-bio">Project management specialist with a record of delivering complex multi-site engineering projects across Nigeria.</div></div></div>
+        <div class="team-card"><img src="profile.jpeg" alt="Lead Engineer"><div class="team-info"><div class="team-name">Olawale Akinola</div><div class="team-role">Lead Field Engineer</div><div class="team-bio">Certified field engineer with expertise in power systems, control automation and large-scale installations.</div></div></div>
+        <div class="team-card"><img src="profile.jpeg" alt="Finance Director"><div class="team-info"><div class="team-name">Ngozi Obi</div><div class="team-role">Finance Director</div><div class="team-bio">Financial strategist ensuring Elinara's sustainable growth and operational efficiency across all divisions.</div></div></div>
+        <div class="team-card"><img src="profile.jpeg" alt="Electronics Lead"><div class="team-info"><div class="team-name">Tayo Ogunleye</div><div class="team-role">Electronics Lead</div><div class="team-bio">Component-level electronics specialist with expertise in industrial board repairs and system diagnostics.</div></div></div>
+        <div class="team-card"><img src="profile.jpeg" alt="Business Development"><div class="team-info"><div class="team-name">Amaka Chukwu</div><div class="team-role">Business Development Manager</div><div class="team-bio">Client relations and business growth specialist, building lasting partnerships across industries.</ div ></ div ></ div >
+      </div>
+    </div>
+  </section>
+
+  <!-- Culture -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-label section-label-center">Team Culture</div>
+      <h2 class="section-title section-title-center">Why People Love<br><span>Working Here</span></h2>
+      <div class="culture-grid">
+        <div class="culture-card"><div class="culture-num">01</div><div><div class="culture-title">Growth &amp; Development</div><div class="culture-text">We invest in our people through continuous training, certifications and international exposure — building careers, not just filling roles.</div></div></div>
+        <div class="culture-card"><div class="culture-num">02</div><div><div class="culture-title">Purpose-Driven Work</div><div class="culture-text">Every project contributes to something larger — powering hospitals, connecting communities, securing facilities. Work that truly matters.</div></div></div>
+        <div class="culture-card"><div class="culture-num">03</div><div><div class="culture-title">Collaborative Environment</div><div class="culture-text">We tackle challenges as a team. Cross-functional collaboration, open communication and mutual respect define how we work every day.</div></div></div>
+        <div class="culture-card"><div class="culture-num">04</div><div><div class="culture-title">Safety First, Always</div><div class="culture-text">The safety and wellbeing of our team members is non-negotiable. We maintain the highest safety standards on every site, every time.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="team-cta">
+    <div class="container">
+      <h3>Join the <span>Elinara</span> Team</h3>
+      <p>We are always looking for talented engineers and professionals who share our passion for excellence.</p>
+      <a class="btn btn-primary" onclick="showPage('contact')">Send Your Application</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div><div class="footer-brand-name">Elinara</div><div class="footer-brand-sub">Engineering Ltd</div><p class="footer-tagline">Engineering Solutions. Powered by Purpose.</p></div>
+        <div><div class="footer-heading">Navigation</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('projects')">Projects</a></li><li><a onclick="showPage('team')">Our Team</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div><div class="footer-heading">Contact</div><div class="footer-contact-item"><div class="footer-contact-label">Phone</div><div class="footer-contact-val">+234 903 499 6849</div></div><div class="footer-contact-item"><div class="footer-contact-label">Email</div><div class="footer-contact-val">info@elinaraengineering.com</div></div><div class="footer-contact-item"><div class="footer-contact-label">Location</div><div class="footer-contact-val">Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria</div></div></div>
+        <div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-copy">© 2026 <span>Elinara Engineering Ltd</span>. All rights reserved.</div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+
+  <div class="page-hero">
+    <div class="container page-hero-content">
+      
+      <h1 class="page-hero-title animate-1">Get In <em>Touch</em></h1>
+      <p class="page-hero-subtitle animate-2">Whether you have a project in mind, need a quote or want to learn more about our services — our team is ready to help. Always available. Always ready. Always reliable.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+        <div class="contact-info">
+          <div class="contact-info-title">Contact Information</div>
+          <div class="contact-info-sub">Reach us through any of the channels below. Our team responds within 24 hours.</div>
+          <div class="contact-items">
+            <div class="contact-item"><div class="contact-icon"><ion-icon name="call-outline"></ion-icon></div><div><div class="contact-label">Phone</div><div class="contact-value">+234 903 499 6849</div></div></div>
+            <div class="contact-item"><div class="contact-icon"><ion-icon name="mail-outline"></ion-icon></div><div><div class="contact-label">Email</div><div class="contact-value">info@elinaraengineering.com<br></div></div></div>
+            <div class="contact-item"><div class="contact-icon"><ion-icon name="business-outline"></ion-icon></div><div><div class="contact-label">Office Address</div><div class="contact-value">Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria</div></div></div>
+            <div class="contact-item"><div class="contact-icon"><ion-icon name="time-outline"></ion-icon></div><div><div class="contact-label">Business Hours</div><div class="contact-value">Monday – Friday: 8:00am – 6:00pm<br>24/7 Emergency Support Available</div></div></div>
+          </div>
+          <div class="contact-social">
+            <div class="contact-social-label">Follow Us</div>
+            <div class="social-icons">
+              <div class="social-icon"><ion-icon name="logo-linkedin"></ion-icon></div>
+              <div class="social-icon"><ion-icon name="logo-twitter"></ion-icon></div>
+              <div class="social-icon"><ion-icon name="logo-facebook"></ion-icon></div>
+              <div class="social-icon"><ion-icon name="logo-instagram"></ion-icon></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-side">
+          <div class="form-title">Send Us a Message</div>
+          <div class="form-sub">Fill out the form below and we will get back to you within 24 hours.</div>
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Email Address</label><input type="email" placeholder="john@company.com"></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+234 800 000 0000"></div>
+          </div>
+          <div class="form-group"><label>Service of Interest</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Telecommunication Systems</option>
+              <option>Electronics Solutions</option>
+              <option>Large Format Solutions</option>
+              <option>Field Engineering Services</option>
+              <option>Power &amp; Control Systems</option>
+              <option>Systems Integration</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea rows="5" placeholder="Tell us about your project or enquiry..."></textarea></div>
+          <button class="btn btn-primary btn-full" onclick="handleSubmit()">Send Message <ion-icon name="arrow-forward-outline"></ion-icon></button>
+          <div class="form-success" id="form-success"><p>Message sent successfully! We will be in touch within 24 hours.</p></div>
+        </div>
+      </div>
+      <div class="map-section">
+        <div class="map-placeholder">
+          <div class="map-icon"><ion-icon name="location-outline"></ion-icon></div>
+          <div class="map-address">Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria</div>
+          <div class="map-text">Our Office Location</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Strip -->
+  <div class="emergency-strip">
+    <div class="container">
+      <div class="emergency-inner">
+        <div><div class="emergency-title">24/7 Emergency Support</div><div class="emergency-sub">Always available. Always ready. Always reliable.</div></div>
+        <div class="emergency-phone">+234 903 499 6849</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div><div class="footer-brand-name">Elinara</div><div class="footer-brand-sub">Engineering Ltd</div><p class="footer-tagline">Engineering Solutions. Powered by Purpose.</p></div>
+        <div><div class="footer-heading">Navigation</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('services')">Services</a></li><li><a onclick="showPage('projects')">Projects</a></li><li><a onclick="showPage('team')">Our Team</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div><div class="footer-heading">Contact</div><div class="footer-contact-item"><div class="footer-contact-label">Phone</div><div class="footer-contact-val">+234 903 499 6849</div></div><div class="footer-contact-item"><div class="footer-contact-label">Email</div><div class="footer-contact-val">info@elinaraengineering.com</div></div><div class="footer-contact-item"><div class="footer-contact-label">Location</div><div class="footer-contact-val">Anifowoshe Street, Off Market Street, Shomolu, Lagos, Nigeria</div></div></div>
+        <div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-copy">© 2026 <span>Elinara Engineering Ltd</span>. All rights reserved.</div></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+const VALID_PAGES = ['home','about','services','projects','team','contact'];
+
+function showPage(id, pushHash){
+  if(!VALID_PAGES.includes(id)) id = 'home';
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const el=document.getElementById('nav-'+id);
+  if(el)el.classList.add('active');
+  if(pushHash !== false){
+    window.scrollTo({top:0,behavior:'smooth'});
+    history.replaceState(null,'','#'+id);
+  }
+}
+
+/* On load: restore the last visited page from the URL hash */
+(function(){
+  const hash = location.hash.replace('#','');
+  if(hash && VALID_PAGES.includes(hash)){
+    showPage(hash, false);
+  }
+  /* else page-home already has class="page active" in HTML */
+})();
+
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+function handleSubmit(){
+  const s=document.getElementById('form-success');
+  s.style.display='block';
+  setTimeout(()=>{s.style.display='none';},5000);
+}
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').style.boxShadow=window.scrollY>20?'0 4px 24px rgba(0,0,0,.1)':'none';
+});
+document.addEventListener('click',function(e){
+  const m=document.getElementById('mobileMenu');
+  const h=document.getElementById('hamburger');
+  if(!m.contains(e.target)&&!h.contains(e.target))closeMenu();
+});
+</script>
+</body>
+</html>
